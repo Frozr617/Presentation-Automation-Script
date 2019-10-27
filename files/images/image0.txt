@@ -1,1 +1,1 @@
-'/home/max/Documents/Coding/Java/Projects/Presentation-Automation-Script/https___blogs-images.forbes.com_forbestechcouncil_files_2019_01_canva-photo-editor-8-7.png' 
+/home/max/Documents/Coding/Java/Projects/Presentation-Automation-Script/download.jpeg

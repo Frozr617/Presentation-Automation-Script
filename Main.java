@@ -95,7 +95,7 @@ public class Main{
           imagePathFile = new File("./files/images/image" + i + ".txt");
           imagePathFile.createNewFile();
           BufferedWriter imageFileWriter = new BufferedWriter(new FileWriter(imagePathFile));
-          imageFileWriter.write(imagePath);
+          imageFileWriter.write(imagePathRemakeTwo);
           imageFileWriter.close();
         }
         catch(IOException e) {
@@ -124,7 +124,6 @@ public class Main{
       JLabel image1 = new JLabel();
       image1.setIcon(new ImageIcon(image1FileScanner.nextLine()));
       main.add(image1);
-
 
       background.add(main);
       mainWindow.add(background);
