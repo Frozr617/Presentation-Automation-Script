@@ -111,7 +111,8 @@ public class Main{
   }
   public static void creatingSlide(String bgImagePath, File textFile, int bgWidth, int bgHeight, int imgCount) {
     try{
-      JPanel background = new JPanel();
+
+      Janel background = new JPanel();
       JLabel backgroundImage = new JLabel();
       backgroundImage.setIcon(new ImageIcon(bgImagePath));
       background.add(backgroundImage);
@@ -125,10 +126,29 @@ public class Main{
       image1.setIcon(new ImageIcon(image1FileScanner.nextLine()));
       main.add(image1);
 
+      Random randomImagePosition = new Random();
+
+      int imageWidth = randomImagePosition.nextInt(bgWidth);
+      int imageHeight = randomImagePosition.nextLine(bgHeight);
+
+      image1.setLocation(imageWidth, imageHeight);
+
+      Scanner textFileScanner = new Scanner(textFile);
+      JLabel slideText = new JLabel(textFileScanner.nextLine());
+      main.add(slideText);
+
+      Random randomTextPosition = new Random();
+
+      int textWidth = randomTextPosition.nextInt(bgWidth);
+      int textHeight = randomTextPosition.nextInt(bgHeight);
+
+      slideText.setLocation(textWidth, textHeight);
+
       background.add(main);
       mainWindow.add(background);
       mainWindow.setSize(bgWidth, bgHeight);
       mainWindow.setVisible(true);
+
       System.out.println("Do you like it?\ny for Yes\nn for No");
       Scanner doYouLike = new Scanner(System.in);
       if (doYouLike.nextLine().equals("y")) {
