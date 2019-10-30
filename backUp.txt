@@ -23,7 +23,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.awt.Color;
+
 
 
 public class Main{
@@ -102,6 +102,7 @@ public class Main{
           System.out.println("IO Error");
         }
       }
+
       creatingSlide(bgImagePathRemakeTwo, textFile, bgwidth, bgheight, imagesCound);
     }
     catch(IOException e) {
@@ -111,46 +112,56 @@ public class Main{
   public static void creatingSlide(String bgImagePath, File textFile, int bgWidth, int bgHeight, int imgCount) {
     try{
 
-        /*Janel background = new JPanel();
-        JLabel backgroundImage = new JLabel();
-        backgroundImage.setIcon(new ImageIcon(bgImagePath));
-        background.add(backgroundImage);*/
+      Janel background = new JPanel();
+      JLabel backgroundImage = new JLabel();
+      backgroundImage.setIcon(new ImageIcon(bgImagePath));
+      background.add(backgroundImage);
 
-        mainWindow.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(bgImagePath)))));
 
-        JPanel main = new JPanel();
+      JPanel main = new JPanel();
 
-        File image1File = new File("./files/images/image0.txt");
-        Scanner image1FileScanner = new Scanner(image1File);
-        JLabel image1 = new JLabel();
-        image1.setIcon(new ImageIcon(image1FileScanner.nextLine()));
-        main.add(image1);
+      File image1File = new File("./files/images/image0.txt");
+      Scanner image1FileScanner = new Scanner(image1File);
+      JLabel image1 = new JLabel();
+      image1.setIcon(new ImageIcon(image1FileScanner.nextLine()));
+      main.add(image1);
 
-        Scanner textFileScanner = new Scanner(textFile);
-        JLabel slideText = new JLabel(textFileScanner.nextLine());
-        slideText.setForeground(Color.WHITE);
-        mainWindow.add(slideText);
+      Random randomImagePosition = new Random();
 
-        mainWindow.add(main);
-        //mainWindow.add(background);
-        mainWindow.setSize(bgWidth, bgHeight);
-        mainWindow.pack();
-        mainWindow.setLayout(new FlowLayout());
-        mainWindow.setVisible(true);
+      int imageWidth = randomImagePosition.nextInt(bgWidth);
+      int imageHeight = randomImagePosition.nextLine(bgHeight);
 
-        System.out.println("Do you like it?\ny for Yes\nn for No");
-        Scanner doYouLike = new Scanner(System.in);
-        if (doYouLike.nextLine().equals("y")) {
-          try{
-            getSaveSnapShot(mainWindow, "slide.jpg");
-          }
-          catch(Exception e) {
-            System.out.println("Error");
-          }
+      image1.setLocation(imageWidth, imageHeight);
+
+      Scanner textFileScanner = new Scanner(textFile);
+      JLabel slideText = new JLabel(textFileScanner.nextLine());
+      main.add(slideText);
+
+      Random randomTextPosition = new Random();
+
+      int textWidth = randomTextPosition.nextInt(bgWidth);
+      int textHeight = randomTextPosition.nextInt(bgHeight);
+
+      slideText.setLocation(textWidth, textHeight);
+
+      background.add(main);
+      mainWindow.add(background);
+      mainWindow.setSize(bgWidth, bgHeight);
+      mainWindow.setVisible(true);
+
+      System.out.println("Do you like it?\ny for Yes\nn for No");
+      Scanner doYouLike = new Scanner(System.in);
+      if (doYouLike.nextLine().equals("y")) {
+        try{
+          getSaveSnapShot(mainWindow, "slide.jpg");
         }
+        catch(Exception e) {
+          System.out.println("Error");
+        }
+      }
     }
-    catch(IOException error) {
-      System.out.println("IO Error");
+    catch(FileNotFoundException er) {
+      System.out.println("File Not Found!");
     }
   }
   public static BufferedImage getScreenShot(Component component) {
